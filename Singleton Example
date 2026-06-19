@@ -1,6 +1,4 @@
 class Logger {
-
-```
 private static Logger instance = new Logger();
 
 private Logger() {
@@ -13,14 +11,13 @@ public static Logger getInstance() {
 public void log(String message) {
     System.out.println(message);
 }
-```
 
 }
 
 public class Main {
 public static void main(String[] args) {
 
-```
+
     Logger logger1 = Logger.getInstance();
     Logger logger2 = Logger.getInstance();
 
@@ -31,6 +28,5 @@ public static void main(String[] args) {
         System.out.println("Only one instance");
     }
 }
-```
 
 }

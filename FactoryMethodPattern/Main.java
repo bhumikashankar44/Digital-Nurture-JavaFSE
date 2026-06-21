@@ -1,32 +1,60 @@
-class Logger {
+interface Document {
+    void open();
+}
 
-    private static Logger instance;
-
-    private Logger() {
-        System.out.println("Logger instance created");
+class WordDocument implements Document {
+    public void open() {
+        System.out.println("Opening Word Document");
     }
+}
 
-    public static Logger getInstance() {
-        if (instance == null) {
-            instance = new Logger();
-        }
-        return instance;
+class PdfDocument implements Document {
+    public void open() {
+        System.out.println("Opening PDF Document");
     }
+}
 
-    public void log(String message) {
-        System.out.println("LOG: " + message);
+class ExcelDocument implements Document {
+    public void open() {
+        System.out.println("Opening Excel Document");
+    }
+}
+
+abstract class DocumentFactory {
+    abstract Document createDocument();
+}
+
+class WordFactory extends DocumentFactory {
+    Document createDocument() {
+        return new WordDocument();
+    }
+}
+
+class PdfFactory extends DocumentFactory {
+    Document createDocument() {
+        return new PdfDocument();
+    }
+}
+
+class ExcelFactory extends DocumentFactory {
+    Document createDocument() {
+        return new ExcelDocument();
     }
 }
 
 public class Main {
     public static void main(String[] args) {
 
-        Logger logger1 = Logger.getInstance();
-        Logger logger2 = Logger.getInstance();
+        DocumentFactory wordFactory = new WordFactory();
+        DocumentFactory pdfFactory = new PdfFactory();
+        DocumentFactory excelFactory = new ExcelFactory();
 
-        logger1.log("Application Started");
-        logger2.log("User Logged In");
+        Document doc1 = wordFactory.createDocument();
+        Document doc2 = pdfFactory.createDocument();
+        Document doc3 = excelFactory.createDocument();
 
-        System.out.println("Same Instance? " + (logger1 == logger2));
+        doc1.open();
+        doc2.open();
+        doc3.open();
     }
 }

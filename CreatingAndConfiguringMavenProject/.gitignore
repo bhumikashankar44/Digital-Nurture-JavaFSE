@@ -1,0 +1,18 @@
+# IntelliJ
+out/
+.idea/
+
+# Eclipse
+bin/
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# NetBeans
+nbproject/private/
+
+# OS
+.DS_Store
